@@ -48,11 +48,12 @@ jobs:
           echo "promoting into dev environment!"
           git config --global user.email mustufa5689@yahoo.com && git config --global user.name mustufa5689
           echo "cloning config repo $CONFIG_REPO_NAME"
-          git clone https://github.com/mustufa5689/argocd-course-webapp-config.git
+          git clone https://oauth2:${{ secrets.GH_PAT }}@github.com/${{ github.repository_owner }}/$CONFIG_REPO_NAME.git
+#          git clone https://github.com/mustufa5689/argocd-course-webapp-config.git
           cd $CONFIG_REPO_NAME
           echo "checkout main branch"
           git checkout main
           echo "updating image tag in values file"
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/webapp/values.yaml
           git add . && git commit -m "update image tag"
-          git push https://mustufa5689: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@github.com/mustufa5689/argocd-course-webapp-config.git
+          git push
