@@ -2,6 +2,7 @@ name: ci
 
 env:
   CONFIG_REPO_NAME: argocd-course-webapp-config
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
 on:
   push:
@@ -47,13 +48,13 @@ jobs:
       - run: |
           echo "promoting into dev environment!"
           git config --global user.email mustufa5689@yahoo.com && git config --global user.name mustufa5689
-          git remote set-url origin https://mustufa5689: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@github.com/mustufa5689/argocd-course-webapp-config.git
+          git remote set-url origin https://mustufa5689:$GITHUB_TOKEN@github.com/mustufa5689/argocd-course-webapp-config.git
           echo "cloning config repo $CONFIG_REPO_NAME"
-          git clone https://mustufa5689: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@github.com/mustufa5689/argocd-course-webapp-config.git
+          git clone https://mustufa5689:$GITHUB_TOKEN@github.com/mustufa5689/argocd-course-webapp-config.git
           cd $CONFIG_REPO_NAME
           echo "checkout main branch"
           git checkout main
           echo "updating image tag in values file"
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/webapp/values.yaml
           git add . && git commit -m "update image tag"
-          git push
+          git remote set-url --push origin https://mustufa5689:$GITHUB_TOKEN@github.com/mustufa5689/argocd-course-webapp-config.git
