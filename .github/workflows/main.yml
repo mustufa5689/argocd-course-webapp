@@ -47,6 +47,7 @@ jobs:
       - run: |
           echo "promoting into dev environment!"
           git config --global user.email mustufa5689@yahoo.com && git config --global user.name mustufa5689
+          git config --global credential.helper store
           echo "cloning config repo $CONFIG_REPO_NAME"
           git clone https://mustufa5689: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@github.com/mustufa5689/argocd-course-webapp-config.git
           cd $CONFIG_REPO_NAME
