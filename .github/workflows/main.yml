@@ -55,4 +55,5 @@ jobs:
           echo "updating image tag in values file"
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/webapp/values.yaml
           git add . && git commit -m "update image tag"
-          git remote set-url --push origin main https://mustufa5689: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@github.com/mustufa5689/argocd-course-webapp-config.git
+          git remote add origin https://mustufa5689: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@github.com/mustufa5689/argocd-course-webapp-config.git
+          git push origin main
