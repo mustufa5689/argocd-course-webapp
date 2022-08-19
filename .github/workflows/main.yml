@@ -57,7 +57,7 @@ jobs:
           echo "promoting into dev environment!"
           git config --global user.email mustufa5689@yahoo.com && git config --global user.name mustufa5689
           echo "cloning config repo $CONFIG_REPO_NAME"
-          git clone https://mustufa5689:${{ secrets.GITHUB_TOKEN }}@github.com/mustufa5689/argocd-course-webapp-config.git
+          git clone https://mustufa5689:${{ secrets.GH_PAT }}@github.com/mustufa5689/argocd-course-webapp-config.git
           cd $CONFIG_REPO_NAME
           echo "checkout main branch"
           git checkout main
