@@ -55,4 +55,4 @@ jobs:
           echo "updating image tag in values file"
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/webapp/values.yaml
           git add . && git commit -m "update image tag"
-          git push origin main
+          git push -u origin https://mustufa5689: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@github.com/mustufa5689/argocd-course-webapp-config.git
